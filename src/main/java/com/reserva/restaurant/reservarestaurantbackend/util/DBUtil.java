@@ -16,7 +16,7 @@ public class DBUtil {
             String driver = "com.mysql.cj.jdbc.Driver";
             String url = "jdbc:mysql://localhost/control_reservas?useSSL=false";
             String user = "root";
-            String password = "";
+            String password = "sistemas";
             try{
             Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);

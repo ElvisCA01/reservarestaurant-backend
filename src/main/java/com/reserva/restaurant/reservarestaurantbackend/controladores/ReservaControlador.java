@@ -1,73 +1,35 @@
 package com.reserva.restaurant.reservarestaurantbackend.controladores;
 
 
-import com.reserva.restaurant.reservarestaurantbackend.excepciones.ResourceNotFoundException;
 import com.reserva.restaurant.reservarestaurantbackend.modelos.Reserva;
-import com.reserva.restaurant.reservarestaurantbackend.repositorios.ReservaRepositorio;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.reserva.restaurant.reservarestaurantbackend.services.ReservaService;
+import com.reserva.restaurant.reservarestaurantbackend.util.WrapperResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@RequestMapping("/api/")
-@CrossOrigin(origins = "http://localhost:4200/")
+@RequestMapping("/reserva")
+@CrossOrigin(origins = "*")
 public class ReservaControlador {
 
-    @Autowired
-    private ReservaRepositorio repositorio;
+    private final ReservaService reservaService;
 
-
-    //Este metodo sirve para listar las reservas
-    @GetMapping("/reservas")
-    public List<Reserva> listarTodasLasReservas() {
-        return repositorio.findAll();
+    public ReservaControlador(ReservaService reservaService) {
+        this.reservaService = reservaService;
     }
 
-
-    //Este metodo sirve para guardar las reservas
-    @PostMapping("/reservas")
-    public Reserva guardarReservas(@RequestBody Reserva reserva){
-        return repositorio.save(reserva);
+    @PostMapping
+    public ResponseEntity<WrapperResponse<Reserva>> agregarReserva(@RequestBody Reserva reserva){
+        Reserva newReserva = reservaService.crearReserva(reserva);
+        return new WrapperResponse<>(true,"success",newReserva).createResponse();
     }
 
-    //Este metodo sirve para buscar una reserva por su id
-    @GetMapping("/reservas/{id}")
-    public ResponseEntity<Reserva> obtenerReservaPorId(@PathVariable Long id){
-        Reserva reserva = repositorio.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(("No existe la reserva con la ID : " + id)));
-        return ResponseEntity.ok(reserva);
+    @GetMapping("/listar")
+    public List<Reserva> listarReservas(){
+        return reservaService.obtenerReservas();
     }
 
-    //Este metodo actualizar la reserva
-    @PutMapping("/reservas/{id}")
-    public ResponseEntity<Reserva> actualizarReserva(@PathVariable Long id, @RequestBody Reserva detallesReserva){
-        Reserva reserva = repositorio.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(("No existe la reserva con la ID : " + id)));
-        reserva.setPersonas(detallesReserva.getPersonas());
-        reserva.setNombre(detallesReserva.getNombre());
-        reserva.setPapellido(detallesReserva.getPapellido());
-        reserva.setSapellido(detallesReserva.getSapellido());
-        reserva.setHorario(detallesReserva.getHorario());
-        reserva.setEvento(detallesReserva.getEvento());
-        reserva.setFecha(detallesReserva.getFecha());
-
-        Reserva reservaActualizada = repositorio.save(reserva);
-        return ResponseEntity.ok(reservaActualizada);
-    }
-
-    //Este metodo elimina la reserva
-    @DeleteMapping("/reservas/{id}")
-    public ResponseEntity<Map<String, Boolean>> eliminarReserva(@PathVariable Long id){
-        Reserva reserva = repositorio.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(("No existe la reserva con la ID : " + id)));
-
-                repositorio.delete(reserva);
-                Map<String, Boolean> response = new HashMap<>();
-                response.put("Eliminado",Boolean.TRUE);
-                return ResponseEntity.ok(response);
-    }
 }
