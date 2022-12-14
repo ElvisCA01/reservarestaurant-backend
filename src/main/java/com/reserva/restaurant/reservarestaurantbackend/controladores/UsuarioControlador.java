@@ -5,6 +5,9 @@ import com.reserva.restaurant.reservarestaurantbackend.modelos.Usuario;
 import com.reserva.restaurant.reservarestaurantbackend.modelos.UsuarioRol;
 import com.reserva.restaurant.reservarestaurantbackend.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +46,7 @@ public class UsuarioControlador {
 
     @GetMapping("/{username}")
     public Usuario obtenerUsuario(@PathVariable("username") String username){
+       UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return usuarioService.obtenerUsuario(username);
     }
     @DeleteMapping("/{usuarioId}")

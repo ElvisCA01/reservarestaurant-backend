@@ -37,12 +37,19 @@ public class ReservarestaurantBackendApplication implements CommandLineRunner {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(ReservarestaurantBackendApplication.class, args);
 	}
 
     @Override
     public void run(String... args) throws Exception {
+
+
+
+
+
+
             /*
          try {
              Usuario usuario = new Usuario();
@@ -71,6 +78,9 @@ public class ReservarestaurantBackendApplication implements CommandLineRunner {
          }catch (UsuarioFoundException exception){
              exception.printStackTrace();
          }*/
+
+
+
 
     }
 }
