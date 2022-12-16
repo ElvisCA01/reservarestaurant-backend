@@ -1,7 +1,9 @@
 package com.reserva.restaurant.reservarestaurantbackend.controladores;
 
 import com.reserva.restaurant.reservarestaurantbackend.modelos.Plato;
+import com.reserva.restaurant.reservarestaurantbackend.modelos.Reserva;
 import com.reserva.restaurant.reservarestaurantbackend.services.PlatoService;
+import com.reserva.restaurant.reservarestaurantbackend.util.WrapperResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +35,12 @@ public class PlatoControlador {
     @GetMapping("/listar")
     public List<Plato> getPlato(){
         return platoService.getPlato();
+    }
+
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<WrapperResponse<Plato>> obtenerPlatoPorId(@PathVariable("id") Integer id){
+        Plato plato = platoService.obtenerPlatoPorId(id);
+        return new WrapperResponse<>(true, "success", plato).createResponse(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
