@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservaService {
@@ -45,6 +46,16 @@ public class ReservaService {
     @Transactional(readOnly = true)
     public List<Reserva> obtenerReservas(){
         return reservaRepositorio.findAll();
+    }
+
+    @Transactional
+    public void deleteReserva(Long id){
+        reservaRepositorio.deleteById(id);
+    }
+
+    public Reserva obtenerReservaPorId(Long id){
+        Optional<Reserva> reserva = reservaRepositorio.findById(id);
+        return reserva.orElseThrow(() -> new ResourceNotFoundException("Reserva no found"));
     }
 
 }

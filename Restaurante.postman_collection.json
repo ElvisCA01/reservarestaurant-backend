@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "04ffdb86-86c4-4e4a-a093-ce5b6856d412",
+		"name": "Restaurante",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18052440"
+	},
+	"item": [
+		{
+			"name": "add plato",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbHZpcyIsImlhdCI6MTY2OTkzODQ3NCwiZXhwIjoxNjY5OTc0NDc0fQ.SLc4ZSnEbYoFx_IkXm6HLBNyi6nDSpEMFK9_9xkzPgw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"Platillo\",\r\n    \"nombre\": \"Ceviche\",\r\n    \"precio\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/plato",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"plato"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar platos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY3MDU1ODE5OCwiZXhwIjoxNjcwNTk0MTk4fQ.reeE-6mWzpYGKUzR3amIFSBwWI7HH-YGvzjHIYbGn4E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\": \"Platillo\",\r\n    \"nombre\": \"Ceviche\",\r\n    \"precio\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/plato/listar",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"plato",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add orden",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY3MDU1MDYyMiwiZXhwIjoxNjcwNTg2NjIyfQ.iJ2jPM_eCDDQSD3RPD2JGGYzF3Uau9A2iM-_CPyt2Mk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"personas\":\"5\",\r\n  \"nombre\":\"henry\",\r\n  \"papellido\":\"velez\",\r\n  \"sapellido\":\"franco\",\r\n  \"horario\":\"2pm\",\r\n  \"evento\":\"almuerzo\",\r\n  \"items\":[\r\n     {\r\n       \"quantity\":1,       \r\n       \"plato\":{\r\n         \"id\":1  \r\n       }\r\n     },\r\n     {\r\n       \"quantity\":2,       \r\n       \"plato\":{\r\n         \"id\":2  \r\n       }\r\n     }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/reserva",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"reserva"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar ordenes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY3MDU1MDYyMiwiZXhwIjoxNjcwNTg2NjIyfQ.iJ2jPM_eCDDQSD3RPD2JGGYzF3Uau9A2iM-_CPyt2Mk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"personas\":\"5\",\r\n  \"nombre\":\"henry\",\r\n  \"papellido\":\"velez\",\r\n  \"sapellido\":\"franco\",\r\n  \"horario\":\"2pm\",\r\n  \"evento\":\"almuerzo\",\r\n  \"items\":[\r\n     {\r\n       \"quantity\":1,       \r\n       \"plato\":{\r\n         \"id\":1  \r\n       }\r\n     },\r\n     {\r\n       \"quantity\":2,       \r\n       \"plato\":{\r\n         \"id\":2  \r\n       }\r\n     }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/reserva/listar",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"reserva",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/generate-token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"generate-token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "elvis",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user actual",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"elvis\",\r\n    \"password\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/generate-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"generate-token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "elvis",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

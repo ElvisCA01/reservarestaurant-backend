@@ -27,9 +27,22 @@ public class ReservaControlador {
         return new WrapperResponse<>(true,"success",newReserva).createResponse();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<WrapperResponse<Void>> deleteReserva(@PathVariable("id") Long id){
+        reservaService.deleteReserva(id);
+        return new WrapperResponse<Void>(true, "success", null)
+                .createResponse(HttpStatus.NO_CONTENT);
+    }
+
     @GetMapping("/listar")
     public List<Reserva> listarReservas(){
         return reservaService.obtenerReservas();
+    }
+
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<WrapperResponse<Reserva>> obtenerReservaPorId(@PathVariable("id") Long id){
+        Reserva reserva = reservaService.obtenerReservaPorId(id);
+        return new WrapperResponse<>(true, "success", reserva).createResponse(HttpStatus.OK);
     }
 
 }
