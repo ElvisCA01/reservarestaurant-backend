@@ -39,7 +39,6 @@ public class ReservaService {
         }
         reserva.setTotal(total);
         reserva.getItems().forEach(line->line.setReserva(reserva));
-        reserva.setFecha(LocalDate.now());
         return reservaRepositorio.save(reserva);
     }
 

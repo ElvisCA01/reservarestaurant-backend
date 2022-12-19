@@ -39,9 +39,8 @@ public class Reserva {
     @Column(name = "evento", length = 60, nullable = false)
     private String evento;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name="fecha", nullable = false, updatable = false)
-    private LocalDate fecha;
+    private String fecha;
 
     @Column(name="total", nullable = false)
     private Double total;
