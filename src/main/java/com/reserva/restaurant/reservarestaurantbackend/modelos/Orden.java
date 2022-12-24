@@ -34,7 +34,7 @@ public class Orden {
     private Reserva reserva;
 
     @ManyToOne
-    @JoinColumn(name = "plato_id", nullable = false, foreignKey = @ForeignKey(name = "FK_plato_orden"))
+    @JoinColumn(name = "platos_id", nullable = false, foreignKey = @ForeignKey(name = "FK_platos_orden"))
     private Plato plato;
 
 }

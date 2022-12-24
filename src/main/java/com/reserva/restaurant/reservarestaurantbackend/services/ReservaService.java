@@ -38,6 +38,7 @@ public class ReservaService {
             total+= item.getTotal();
         }
         reserva.setTotal(total);
+        reserva.setEstado("reservado");
         reserva.getItems().forEach(line->line.setReserva(reserva));
         return reservaRepositorio.save(reserva);
     }

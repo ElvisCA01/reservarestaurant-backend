@@ -45,6 +45,9 @@ public class Reserva {
     @Column(name="total", nullable = false)
     private Double total;
 
+    @Column(name="estado", length = 20, nullable = false)
+    private String estado;
+
     @OneToMany( cascade = CascadeType.ALL, mappedBy = "reserva", fetch = FetchType.LAZY)
     private List<Orden> items;
 
